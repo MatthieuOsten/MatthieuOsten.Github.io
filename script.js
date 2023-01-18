@@ -22,15 +22,24 @@ window.onscroll = function() {
   }
 };
 
-var reader = new FileReader();
-reader.onload = function() {
-  var data = JSON.parse(reader.result);
-  data.pages.forEach(page => {
-    console.log("Creating li for: " + page.name);
-    let li = document.createElement("li");
-    li.href = page.url;
-    li.innerHTML = page.name;
-    sidebar.appendChild(li);
-  });
-};
-reader.readAsText("./pages.json");
+document.getElementById("file-input").addEventListener("change", function() {
+  console.log("Input file changed");
+  let file = this.files[0];
+  console.log("File selected: " + file.name);
+  let reader = new FileReader();
+
+  reader.onloadend = function() {
+      console.log("File reading completed");
+      let data = JSON.parse(reader.result);
+      console.log("Data parsed: " + JSON.stringify(data));
+      data.pages.forEach(page => {
+          console.log("Creating li for: " + page.name);
+          let li = document.createElement("li");
+          li.href = page.url;
+          li.innerHTML = page.name;
+          sidebar.appendChild(li);
+      });
+  }
+  reader.readAsText(file);
+  console.log("File reading started");
+}, false);
