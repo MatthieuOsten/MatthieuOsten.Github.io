@@ -1,7 +1,31 @@
 <!DOCTYPE html>
-<html>
-<body>
-<h1>Hello World</h1>
-<p>I'm hosted with GitHub Pages.</p>
-</body>
+<html lang="fr">
+	<head>
+	  <title>Matthieu Osten - Portfolio</title>
+	  <link rel="stylesheet" type="text/css" href="style.css">
+	</head>
+
+	<body>
+
+	  <div class="fixed-header">
+		<h1>Matthieu Osten</h1>
+	  </div>
+
+	  <div class="sidebar">
+		<ul>
+		  <li onclick="location.href='lien1.html'">Bouton 1</li>
+		  <li onclick="location.href='lien2.html'">Bouton 2</li>
+		  <li onclick="location.href='lien3.html'">Bouton 3</li>
+		</ul>
+	  </div>
+
+	  <div class="main-content">
+		<div class="label">
+		  <a href="#">Réseau social</a>
+		</div>
+	  </div>
+
+	  <input type="file" id="file-input" value="./pages.json" hidden>
+	  <script src="./script.js"></script>
+	</body>
 </html>

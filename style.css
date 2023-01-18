@@ -1,0 +1,112 @@
+:root {
+  --sidebar-width: 200px; /* définir la largeur de la barre latérale */
+  --header-height: 100px;
+
+  --sidebar-li-border-radius:8px;
+}
+
+/* CSS pour le fond du body */
+body {
+  background-color: black;
+  overflow-x: hidden;
+  margin: 0;
+}
+
+/* CSS pour la tête de page qui suit le deffilement de la page */
+.fixed-header {
+	position: relative; /* pour placer la barre latérale en dessous */
+	height: var(--header-height);
+	width: 100%;
+  margin: 0%;
+	background-color: #f1f1f1;
+	z-index: 1;
+}
+
+.fixed-header h1 {
+  text-align: left;
+  padding: 1em 0 1em 1em;
+  margin: 0;
+  /*padding-left: auto;*/
+  /*padding-right: auto;*/
+  width: fit-content;
+  height: fit-content;
+}
+
+/* CSS pour la barre latérale */
+.sidebar {
+  position: absolute; /* pour placer la barre latérale en dessous */
+  top: var(--header-height); /* pour placer la barre latérale en dessous de la tête de page */
+  left: 0px;
+  height: calc(100% - var(--header-height));
+  width: var(--sidebar-width); /* utiliser la variable pour définir la largeur */
+  background-color: #f1f1f1;
+}
+
+/* CSS pour la liste de boutons dans la barre latérale */
+.sidebar ul {
+  list-style-type: none;
+  width: var(--sidebar-width); /* utiliser la variable pour définir la largeur */
+  margin: 0;
+  padding: 0;
+}
+
+.sidebar li {
+  width: var(--sidebar-width) - 20px;
+  display: block;
+  padding: 10% 0px 20px 20px;
+  text-align: left;
+  border: none; /* pour enlever les bordures */
+	color: white;
+  font-weight: bold;
+  transition: all 0.2s ease-in-out; /* pour animer les changements de style */
+}
+
+/* CSS pour les boutons dans la barre latérale */
+.sidebar li:nth-child(odd) {
+  background-color: rgb(100, 100, 100);
+}
+
+/* CSS pour les boutons dans la barre latérale */
+.sidebar li:nth-child(even) {
+  background-color: rgb(80, 80, 80);
+}
+
+/* CSS pour les boutons lorsque la souris est positionnée dessus */
+.sidebar li:hover {
+  background-color: white; /* pour changer la couleur de fond */
+  width: 220px; /* pour s'agrandir vers la droite */
+  text-align: center;
+  color: black;
+  border-bottom-right-radius: var(--sidebar-li-border-radius); /* pour s'arrondir sur le coin bas droite */
+  border-top-right-radius: var(--sidebar-li-border-radius);
+}
+
+/* CSS pour les étiquettes qui sortent du corps de la page */
+.label {
+  position: absolute;
+  right: -50px;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: #f1f1f1;
+  padding: 8px;
+  border-radius: 4px;
+  transition: all 0.2s ease-in-out;
+}
+
+/* CSS pour les boutons carrés dans le corps de la page */
+.square-button {
+display: flex;
+align-items: center;
+justify-content: center;
+width: 200px;
+height: 200px;
+margin: 16px;
+background-color: #f1f1f1;
+text-decoration: none;
+}
+
+/* CSS pour les images dans les boutons carrés */
+.square-button img {
+max-width: 100%;
+max-height: 100%;
+}
