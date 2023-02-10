@@ -1,9 +1,26 @@
 :root {
-  --sidebar-width: 200px; /* définir la largeur de la barre latérale */
+
+  /*==== VARIABLES ====*/
+
+  --height-min: calc(100vh - var(--header-height));
+
+  /*---- BARRE DU HAUT ----*/
   --header-height: 100px;
 
+  /*---- BARRE LATERAL ----*/
+  --sidebar-width: 200px; /* définir la largeur de la barre latérale */
   --sidebar-li-border-radius:8px;
+
+  /*---- CONTENT ----*/
+  --content-width: 300px;
+
+  /*---- ETIQUETTES ----*/
+  --label-width: 100px;
+  --label-heigth: calc(var(--label-width)*2);
+  --label-color: rgb(235, 9, 9);
 }
+
+/* ============ BASICS BALISES ============ */
 
 /* CSS pour le fond du body */
 body {
@@ -12,41 +29,58 @@ body {
   margin: 0;
 }
 
+/* ============ TITLE ============ */
+
+.title span {
+  display: inline-block;
+  animation: float 1.5s ease-in-out infinite;
+}
+
+/* ============ BARRE LATERAL ============ */
+
 /* CSS pour la tête de page qui suit le deffilement de la page */
 .fixed-header {
+  z-index: 1;
+
 	position: relative; /* pour placer la barre latérale en dessous */
 	height: var(--header-height);
 	width: 100%;
   margin: 0%;
-	background-color: #f1f1f1;
-	z-index: 1;
+	background: linear-gradient(#484848 0%, #000000 100%);
 }
 
 .fixed-header h1 {
   text-align: left;
   padding: 1em 0 1em 1em;
   margin: 0;
-  /*padding-left: auto;*/
-  /*padding-right: auto;*/
+  color: white;
   width: fit-content;
   height: fit-content;
 }
 
+/* ============ BARRE LATERAL ============ */
+
 /* CSS pour la barre latérale */
 .sidebar {
+	z-index: 4;
+
   position: absolute; /* pour placer la barre latérale en dessous */
   top: var(--header-height); /* pour placer la barre latérale en dessous de la tête de page */
   left: 0px;
-  height: calc(100% - var(--header-height));
+  height: var(--mainContent-height);
+  min-height: var(--height-min);
   width: var(--sidebar-width); /* utiliser la variable pour définir la largeur */
-  background-color: #f1f1f1;
+  background:
+  linear-gradient(to top ,rgba(255, 255, 255, 0.5) 0%, rgba(0,0,0,1) 100%),
+  linear-gradient(to right,rgba(255, 255, 255, 0.5) 0%, rgba(0,0,0,0.5) 100%);
 }
 
 /* CSS pour la liste de boutons dans la barre latérale */
 .sidebar ul {
   list-style-type: none;
   width: var(--sidebar-width); /* utiliser la variable pour définir la largeur */
-  margin: 0;
+  margin-top: 10px;
+  margin-bottom: 10px;
   padding: 0;
 }
 
@@ -58,17 +92,23 @@ body {
   border: none; /* pour enlever les bordures */
 	color: white;
   font-weight: bold;
+  margin-top: 10px;
+  margin-bottom: 10px;
   transition: all 0.2s ease-in-out; /* pour animer les changements de style */
 }
 
 /* CSS pour les boutons dans la barre latérale */
 .sidebar li:nth-child(odd) {
-  background-color: rgb(100, 100, 100);
+  background-color: rgba(100, 100, 100, 0.2);
+  background: linear-gradient(to top, rgba(0, 0, 0, 0), rgb(52, 45, 85,0.3) 50%),
+              linear-gradient(to bottom, rgba(0, 0, 0, 0), rgb(52, 45, 85,0.3) 50%);
 }
 
 /* CSS pour les boutons dans la barre latérale */
 .sidebar li:nth-child(even) {
-  background-color: rgb(80, 80, 80);
+  background-color: rgba(80, 80, 80, 0.2);
+  background: linear-gradient(to top, rgba(0, 0, 0, 0), rgb(52, 45, 85,0.3) 50%),
+              linear-gradient(to bottom, rgba(0, 0, 0, 0), rgb(52, 45, 85,0.3) 50%);
 }
 
 /* CSS pour les boutons lorsque la souris est positionnée dessus */
@@ -81,32 +121,365 @@ body {
   border-top-right-radius: var(--sidebar-li-border-radius);
 }
 
+/* ============ CONTENT ============ */
+
+.main-content {
+  z-index: 3;
+
+  /* POSITION */
+  position: absolute;
+  top: var(--header-height);
+  left: var(--sidebar-width);
+  padding: 30px;
+
+  /* SIZE */
+  width: -webkit-fill-available;
+  min-height: var(--height-min);
+  height: fit-content;
+  overflow: hidden;
+
+  /* DISPLAY */
+  background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+  box-shadow: inset 10px 9px 15px 2px rgb(0 0 0 / 80%);
+
+  /* GRID */
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+}
+
+.box {
+  z-index: 1;
+
+  --border-size: 3px;
+  --border-angle: 0turn;
+  width: var(--content-width);
+  height: var(--content-width);
+  border-radius: 10%;
+  background-image: conic-gradient(
+  from var(--border-angle),
+  #213,
+  #112 50%,
+  #213
+  ),
+  conic-gradient(from var(--border-angle), transparent 20%, #08f, #f03),
+  radial-gradient(
+  circle at center,
+  transparent 0%,
+  rgba(255, 255, 255, 0.5) 500%
+  );
+
+  animation: bg-spin 3s linear infinite;
+  animation-play-state: paused;
+
+  }
+
+  @keyframes bg-spin {
+  to {
+  --border-angle: 1turn;
+  }
+  }
+
+  @property --border-angle {
+  syntax: "<angle>";
+  inherits: true;
+  initial-value: 0turn;
+  }
+
+  .box:hover {
+    z-index: 1;
+    animation-play-state:running;
+  }
+
+/* ============ ETIQUETTES ============ */
+
+/* CSS pour grouper les étiquettes qui sortent du corps de la page */
+.labels-container {
+  z-index: 2;
+
+  position: absolute;
+  right: 10px;
+  top: calc(var(--header-height) + -30px);
+  display: flex;
+}
+
 /* CSS pour les étiquettes qui sortent du corps de la page */
 .label {
-  position: absolute;
-  right: -50px;
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: #f1f1f1;
-  padding: 8px;
-  border-radius: 4px;
-  transition: all 0.2s ease-in-out;
+    background: linear-gradient( var(--label-color) 0%, #1b2735 50%);
+    margin: calc(var(--label-width )/30);
+    height: var(--label-heigth);
 }
+
+/* CSS pour les images des étiquettes */
+.label img {
+    width: calc(var(--label-width )/2);
+    height: calc(var(--label-width )/2);
+    margin: calc(var(--label-width )/10);
+
+    filter: blur(1px);
+}
+
+/* Met l'image net lorsque la souris est sur l'etiquette */
+.label:hover img {
+  filter: blur(0px) invert(1);
+}
+
+/* ============ CONTENU ============ */
 
 /* CSS pour les boutons carrés dans le corps de la page */
 .square-button {
-display: flex;
-align-items: center;
-justify-content: center;
-width: 200px;
-height: 200px;
-margin: 16px;
-background-color: #f1f1f1;
-text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 200px;
+  height: 200px;
+  margin: 16px;
+  background-color: #f1f1f1;
+  text-decoration: none;
 }
 
 /* CSS pour les images dans les boutons carrés */
 .square-button img {
 max-width: 100%;
 max-height: 100%;
+}
+
+/* Faire grossir un bouton lorsque la souris est dessus */
+button {
+  transition: transform 0.3s;
+}
+
+button:hover {
+  transform: scale(1.1);
+}
+
+/* Faire apparaître un sous-menu lorsque le bouton est cliqué */
+.sub-menu {
+  transition: max-height 0.3s;
+  max-height: 0;
+  overflow: hidden;
+}
+
+button:active + .sub-menu {
+  max-height: 100px;
+}
+
+/* Faire apparaître un bouton "Retour en haut" lorsque l'utilisateur a fait défiler la page jusqu'en bas */
+.scroll-top-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s, visibility 0.3s;
+}
+
+/* ============ CHARGEMENT DE LA PAGE ============ */
+
+/* Faire tourner une icône de chargement */
+.loading-icon {
+  animation: rotation 1s infinite linear;
+}
+
+/* Faire défiler un texte pour indiquer que le contenu est en cours de chargement */
+.loading-text {
+  animation: text-scrolling 3s
+
+  infinite linear;
+}
+
+/* Faire apparaître un écran de chargement lorsque la page est en cours de chargement */
+.loading-screen {
+  z-index: 99;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 50%;
+  background-color: rgba(0, 0, 0, 0.8);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s, visibility 0.3s;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  .loader {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    animation: rotation 2s linear infinite;
+  }
+    .loader:nth-child(1):before,
+    .loader:nth-child(2):before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 50%;
+      height: 100%;
+      background: linear-gradient(to top, transparent, rgba(0, 255, 249, 0.4));
+      background-size: 100px 180px;
+      background-repeat: no-repeat;
+      border-top-left-radius: 100px;
+      border-bottom-left-radius: 100px;
+    }
+    .loader:nth-child(2),
+    .loader:nth-child(4) {
+        animation-delay: -1s;
+        filter: hue-rotate(290deg);
+      }
+
+    .loader i {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 20px;
+        height: 20px;
+        background: #00fff9;
+        border-radius: 50%;
+        z-index: 100;
+        box-shadow: 0 0 10px #00fff9,
+          0 0 20px #00fff9,
+          0 0 30px #00fff9,
+          0 0 40px #00fff9,
+          0 0 50px #00fff9,
+          0 0 60px #00fff9,
+          0 0 70px #00fff9,
+          0 0 80px #00fff9,
+          0 0 90px #00fff9,
+          0 0 100px #00fff9,
+      }
+
+      .loader span {
+        position: absolute;
+        inset: 20px;
+        background: #000;
+        border-radius: 50%;
+        z-index: 1;
+      }
+
+
+/* ============ SNOW ============ */
+
+.snowflakes-container {
+  z-index: 0;
+  opacity: 0.02;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.snowflake {
+
+  position: absolute;
+  top: -50px;
+  width: 10px;
+  height: 10px;
+  background: white;
+  border-radius: 50%;
+  animation: snowflakeFall 5s linear infinite;
+}
+
+
+/* ============ STYLES ANIMATIONS ============ */
+
+/* Faire défiler un texte en rainbow */
+.animation-rainbow {
+  animation: rainbow 5s infinite linear;
+}
+
+/* Faire défiler un texte en levitant */
+.animation-float {
+  animation: float 1.5s ease-in-out infinite;
+}
+
+/* Faire apparaître progressivement */
+.animation-advent {
+  animation: advent 0.5s forwards;
+  opacity: 0;
+}
+
+/* ============ ANIMATIONS ============ */
+
+@keyframes snowflakeFall {
+  from {
+    transform: translateY(-50px) rotate(0deg);
+  }
+
+  to {
+    transform: translateY(100vh) rotate(360deg);
+  }
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+/* Rotation:
+Cette animation fait tourner un élément sur lui-même à 360 degrés.
+Elle définit les clés "from" (à partir de) et "to" (vers).
+Elle utilise la propriété "transform" pour effectuer la rotation.
+*/
+@keyframes rotation {
+  from {
+  transform: rotate(0deg);
+  }
+  to {
+  transform: rotate(360deg);
+  }
+}
+
+/* Text scrolling:
+Cette animation fait défiler un texte horizontalement.
+Elle utilise la propriété "transform" pour déplacer le texte sur l'axe X.
+*/
+@keyframes text-scrolling {
+from {
+transform: translateX(0);
+}
+to {
+transform: translateX(-100%);
+}
+}
+
+/* Rainbow:
+Cette animation fait passer la couleur d'un élément à travers les couleurs de l'arc-en-ciel.
+Elle utilise la propriété "color" pour changer la couleur de l'élément.
+Elle définit différents points clés pour chaque couleur de l'arc-en-ciel.
+*/
+@keyframes rainbow {
+  0% { color: #f00; } /* Red */
+  10% { color: #ff7f00; } /* Orange */
+  20% { color: #ffff00; } /* Yellow */
+  30% { color: #00ff00; } /* Green */
+  40% { color: #0000ff; } /* Blue */
+  50% { color: #4b0082; } /* Indigo */
+  60% { color: #8b00ff; } /* Violet */
+  100% { color: #f00; } /* Red */
+}
+
+@keyframes advent {
+  to {
+    opacity: 1;
+  }
 }
