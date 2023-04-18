@@ -1,7 +1,0 @@
-{
-    "pages": [
-        {"name": "Projet 1", "url": ";/projet1.html"},
-        {"name": "Projet 2", "url": "./projet2.html"},
-        {"name": "Projet 3", "url": "./projet3.html"}
-    ]
-}

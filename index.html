@@ -2,44 +2,56 @@
 <html lang="fr">
 	<head>
 	  <title>Matthieu Osten - Portfolio</title>
-	  <link rel="stylesheet" type="text/css" href="style.css">
+	  <link rel="stylesheet" href="Style/style.css">
+	  <link rel="stylesheet" href="Style/Widgets/carousel.css">
+	  <link rel="stylesheet" class="style-colors" href="Style/Color/dark.css">
 	</head>
 
 	<body>
 
-	  <div class="fixed-header">
-		<h1 class="title char-to-char">Matthieu Osten</h1>
-	  </div>
-
-	  <div class="sidebar">
-		<ul>
-		  <li onclick="location.href='lien1.html'">Bouton 1</li>
-		  <li onclick="location.href='lien2.html'">Bouton 2</li>
-		  <li onclick="location.href='lien3.html'">Bouton 3</li>
-		</ul>
-	  </div>
+		<header>
+			<div id="back">
+				<div class="space"></div>
+				<img id="rocket" src="Image/rocket.svg"></img>
+				<div class="space" id="stars"></div>
+				<img id="spacecore" src="Image/spaceCore.svg"></img>
+			</div>
+			<div id="front">
+				<h1 id="name">Matthieu Osten</h1>
+				<h2 class="alternative-text">Game Programmer</h2>
+				<h3>Developpeur <span class="alternative-text">Unity</span> & <span class="alternative-text">Unreal engine 5</span></h3>
+				<p>Je suis passionné de <span class="alternative-text">nouvelles technologie</span>, de l’<span class="alternative-text">espace</span>,<br>l’<span class="alternative-text">animation occidentale</span>,<span class="alternative-text">asiatique</span>, des <span class="alternative-text">sciences</span> et du <span class="alternative-text">cinema</span></p>
+				<p id="favorite-pick">
+					<strong>Mes jeux coup de </strong>
+					<img src="Image/favorite.svg"></img>
+					<em>Brutal legend<span class="alternative-text">,</span> Road 96<span class="alternative-text">,</span> Jurassic Park : Operation Genesis <span class="alternative-text">et</span> Control</em>
+				</p>
+			</div>
+		</header>
 
 		<div class="labels-container">
-			<div class="label">
-				<img src="SocialNetwork/linkedin.png" alt="label image">
-			</div>
-			<div class="label">
-				<img src="SocialNetwork/twitter.png" alt="label image">
-			</div>
-			<div class="label">
-				<img src="SocialNetwork/itchio.png" alt="label image">
+			<a class="label" href="https://www.linkedin.com/in/matthieu-o-309aba194" target="_blank">
+				<img src="Image/SocialNetwork/linkedin.png" alt="label linkedin">
+			</a>
+			<a class="label" href="https://twitter.com/MatthieuOsten" target="_blank">
+				<img src="Image/SocialNetwork/twitter.png" alt="label twitter">
+			</a>
+			<a class="label" href="https://evil0games.itch.io/" target="_blank">
+				<img src="Image/SocialNetwork/itchio.png" alt="label itchio">
+			</a>
+		</div>
+
+		<div class="main-back">
+			<div class="snowflakes-container"></div>
+	  		<div class="main-content">
+				<div class="box-container"></div>
+				<div class="cards-container" id="Games"></div>
+				<div class="cards-container" id="Tools"></div>
+				<div class="cards-container" id="Landscape"></div>
 			</div>
 		</div>
 
-	  <div class="main-content">
-		<div class="snowflakes-container"></div>
-		<div class="box"><div class="glare"></div></div>
-		<div class="box"><div class="glare"></div></div>
-		<div class="box"><div class="glare"></div></div>
-		<div class="box"><div class="glare"></div></div>
-	  </div>
-
-	  <button class="scroll-top-button"></button>>
+		<button class="scroll-top-button"></button>
 
 	  <div class="loading-screen">
 		<div class="loader"><span></span></div>
@@ -48,7 +60,11 @@
 		<div class="loader"><i></i></div>
 	  </div>
 
-	  <input type="file" id="file-input" value="./pages.json" hidden>
+	  <script src="./category.js"></script>
 	  <script src="./script.js"></script>
 	</body>
+
+	<footer>
+
+	</footer>
 </html>

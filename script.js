@@ -15,7 +15,7 @@ for (var i = 0; i < labels.length; i++) {
 }
 
 /* JavaScript pour faire suivre le défilement du titre */
-var header = document.querySelector(".fixed-header");
+var header = document.querySelector("header");
 var sticky = header.offsetTop;
 window.onscroll = function() {
   if (window.pageYOffset > sticky) {
@@ -57,7 +57,7 @@ window.addEventListener("load", function() {
   /* Utiliser JavaScript pour gerer la neige */
 
   var snowflakesContainer = document.querySelector('.snowflakes-container');
-  var totalSnowflakes = 200;
+  var totalSnowflakes = 0;
 
   for (let i = 0; i < totalSnowflakes; i++) {
     var snowflake = document.createElement("div");
@@ -72,14 +72,16 @@ window.addEventListener("load", function() {
   document.querySelector(".loading-screen").style.visibility = "hidden";
 });
 
-
 /* JavaScript pour faire tourner les box vers la souris */
-const boxes = document.querySelectorAll(".box");
+const backCard = document.querySelectorAll(".back-card");
 const limits = 20;
 
 // Declare an anonymous function to handle the mousemove event
-boxes.forEach(box => {
-  box.addEventListener("mousemove", function (e) {
+backCard.forEach(back => {
+  const glare = back.querySelector(".glare");
+  const starsglare = back.querySelector(".stars-glare");
+
+  back.addEventListener("mousemove", function (e) {
     // Get the bounding rectangles of the target element
     const rect = e.target.getBoundingClientRect();
 
@@ -109,30 +111,54 @@ boxes.forEach(box => {
 
     this.style.transform = "perspective(1000px) rotateX(" + -rotateX + "deg) rotateY(" + rotateY + "deg)";
 
-     // Calculate the glare position based on the rotation values
-    const glarePos = rotateX + rotateY + 90;
-    const glare = this.querySelector(".glare");
-    glare.style.left = glarePos + "%";
+    // Déplace la div "glare" en fonction de l'offsetX et de l'offsetY
+    glare.style.transform = `translate(${offsetX * 40 - 20}px, ${offsetY * 40 - 20}px)`;
+    starsglare.style.transform = `translate(${offsetX * 40 - 20}px, ${offsetY * 40 - 20}px)`;
+
+    // Affiche la div "glare" en fonction de l'offsetY
+    glare.style.opacity = offsetY;
+    starsglare.style.opacity = Math.clamp(offsetY,0.3,0.6);
   });
 
-  box.addEventListener("mouseleave", function (e) {
+  back.addEventListener("mouseleave", function (e) {
     this.style.boxShadow = "0px 0px 3px rgba(0, 0, 0, 0.051), 0px 0px 7.2px rgba(0, 0, 0, 0.073), 0px 0px 13.6px rgba(0, 0, 0, 0.09), 0px 0px 24.3px rgba(0, 0, 0, 0.107), 0px 0px 45.5px rgba(0, 0, 0, 0.129), 0px 0px 109px rgba(0, 0, 0, 0.18)";
     this.style.transform = "scale(1.0)";
-    const glare = this.querySelector(".glare");
-    glare.style.left = "100%";
+    glare.style.opacity = "0.3";
+    starsglare.style.opacity = "0.3";
+  });
+});
+
+Math.clamp = function(value, min, max) {
+  return Math.min(Math.max(value, min), max);
+}
+
+/* JavaScript pour faire tourner les cartes vers la souris */
+const cards = document.querySelectorAll(".card");
+
+// Declare an anonymous function to handle the mousemove event
+cards.forEach(card => {
+  card.addEventListener("mouseover", function(e) {
+    this.parentNode.className = "backlight-card";
+  });
+
+  card.addEventListener("mouseleave", function (e) {
+    this.parentNode.className = "back-card";
   });
 });
 
 /* Utiliser JavaScript pour mettre chaque charactere du titre dans une balise span */
 var balise = document.querySelector('.char-to-char');
-var text = balise.innerHTML;
-balise.innerHTML = ""; // Supprime le texte précédent
 
-for (var i = 0; i < text.length; i++) {
-  var letter = document.createElement("span");
-  letter.style.animationDelay = (i * 0.1) + "s";
-  letter.innerHTML = text[i];
-  balise.appendChild(letter);
+if (balise != null) {
+  var text = balise.innerHTML;
+  balise.innerHTML = ""; // Supprime le texte précédent
+
+  for (var i = 0; i < text.length; i++) {
+    var letter = document.createElement("span");
+    letter.style.animationDelay = (i * 0.1) + "s";
+    letter.innerHTML = text[i];
+    balise.appendChild(letter);
+  }
 }
 
 /* Utiliser JavaScript pour mettre chaque balise du parent */
