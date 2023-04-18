@@ -1,4 +1,6 @@
-/* JavaScript pour faire sortir les étiquettes lorsque la souris est placée dessus */
+/* cards is add for next version of the web site */
+
+/* JavaScript to output the labels when the mouse is placed on them */
 var labels = document.querySelectorAll(".label");
 for (var i = 0; i < labels.length; i++) {
   labels[i].addEventListener("mouseover", function() {
@@ -14,34 +16,7 @@ for (var i = 0; i < labels.length; i++) {
   });
 }
 
-/* JavaScript pour faire suivre le défilement du titre */
-var header = document.querySelector("header");
-var sticky = header.offsetTop;
-window.onscroll = function() {
-  if (window.pageYOffset > sticky) {
-    header.classList.add("sticky");
-  } else {
-    header.classList.remove("sticky");
-  }
-};
-
-/* Utiliser JavaScript pour détecter le défilement de la page */
-window.onscroll = function() {
-  if (window.pageYOffset > 500) {
-    document.querySelector(".scroll-top-button").style.opacity = "1";
-    document.querySelector(".scroll-top-button").style.visibility = "visible";
-  } else {
-    document.querySelector(".scroll-top-button").style.opacity = "0";
-    document.querySelector(".scroll-top-button").style.visibility = "hidden";
-  }
-
-  var mainContent = document.querySelector('.main-content');
-  var sidebar = document.querySelector('.sidebar');
-
-  sidebar.style.height = mainContent.offsetHeight + 'px';
-};
-
-/* Utiliser JavaScript pour détecter le chargement de la page */
+/* Use JavaScript to detect page load */
 window.onload = function() {
   document.querySelector(".loading-screen").style.opacity = "1";
   document.querySelector(".loading-screen").style.visibility = "visible";
@@ -52,19 +27,6 @@ window.addEventListener("load", function() {
   for (var i = 0; i < labels.length; i++) {
     labels[i].style.animation = "float 1.5s ease-in-out infinite";
     labels[i].style.animationDelay = (i * 0.5) + "s";
-  }
-
-  /* Utiliser JavaScript pour gerer la neige */
-
-  var snowflakesContainer = document.querySelector('.snowflakes-container');
-  var totalSnowflakes = 0;
-
-  for (let i = 0; i < totalSnowflakes; i++) {
-    var snowflake = document.createElement("div");
-    snowflake.classList.add('snowflake');
-    snowflake.style.left = Math.random() * 100 + 'vw';
-    snowflake.style.animationDelay = Math.random() * 5 + 's';
-    snowflakesContainer.appendChild(snowflake);
   }
 
 /* Reitre la page de chargement */
@@ -128,6 +90,7 @@ backCard.forEach(back => {
   });
 });
 
+/* make a clamp method for glare of cards */
 Math.clamp = function(value, min, max) {
   return Math.min(Math.max(value, min), max);
 }

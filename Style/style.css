@@ -48,13 +48,6 @@ body {
   margin: 0;
 }
 
-/* ============ TITLE ============ */
-
-.title span {
-  display: inline-block;
-  animation: float 1.5s ease-in-out infinite;
-}
-
 /* ============ FIXED HEADER ============ */
 
 /* CSS pour la tête de page qui suit le deffilement de la page */
@@ -75,7 +68,9 @@ body {
 
   width: 50px;
   filter: brightness(0.5) blur(1px);
-  transform: rotate(340deg) translate(555px, 600px);
+  transform: rotate(340deg) translate(555px, 800px);
+
+  animation: animrocket 20s linear infinite;
 }
 
 #spacecore {
@@ -86,6 +81,7 @@ body {
   filter: brightness(0.5) blur(0.5px);
   transform: rotate(286deg) translate(-458px, -361px);
 
+  animation: animcore 20s linear infinite;
 }
 
 /* ============ HEADER ============ */
@@ -407,6 +403,24 @@ header #back .space + #stars {
 
 }
 
+@media screen and (max-height: 850px) {
+  .main-back {
+    visibility: hidden;
+  }
+
+  header {
+    height: 100vh;
+  }
+
+  header #front {
+    height: 100vh;
+  }
+
+  header #back {
+    height: 100vh;
+  }
+}
+
 @media screen and (max-width: 755px) {
 
   .main-content {
@@ -472,6 +486,7 @@ header #back .space + #stars {
   background: linear-gradient(135deg, rgba(0, 0, 0, 50%) 50%, rgba(0, 0, 0, 100%) 80%);
   z-index: 2;
   border-top-left-radius: 10px;
+  font-family: monospace;
   text-align: center;
   font-size: 16px;
   padding-top: 4px;
@@ -696,19 +711,6 @@ header #back .space + #stars {
   animation: rotation 2.5s linear infinite;
 }
 
-
-  @keyframes bg-spin {
-  to {
-  --border-angle: 1turn;
-  }
-  }
-
-  @property --border-angle {
-  syntax: "<angle>";
-  inherits: true;
-  initial-value: 0turn;
-  }
-
   .card:hover {
     z-index: 1;
     animation-play-state:running;
@@ -747,17 +749,33 @@ header #back .space + #stars {
 
   position: absolute;
   right: 10px;
-  top: calc(var(--header-height) + -30px);
+  top: calc(var(--header-height) + -50px);
   display: flex;
+}
+
+@media screen and (max-height: 850px) {
+
+  .labels-container {
+    top: calc(100vh + -80px);
+  }
+
+}
+
+@media screen and (max-height: 550px) {
+
+  .labels-container {
+    visibility: hidden;
+  }
+
 }
 
 /* CSS pour les étiquettes qui sortent du corps de la page */
 .label {
-    background: linear-gradient( var(--label-color) 0%, #1b2735 50%);
-    margin: calc(var(--label-width )/30);
-    height: var(--label-height);
-
-    transition: all 0.3s ease;
+  background: linear-gradient( #3AABFF 0%, #1b2735 50%);
+  margin: calc(var(--label-width )/30);
+  height: var(--label-height);
+  transition: all 0.3s ease;
+  border-radius: 10px;
 }
 
 /* CSS pour les images des étiquettes */
@@ -765,8 +783,6 @@ header #back .space + #stars {
     width: calc(var(--label-width )/2);
     height: calc(var(--label-width )/2);
     margin: calc(var(--label-width )/10);
-
-    filter: blur(1px);
 }
 
 /* Met l'image net lorsque la souris est sur l'etiquette */
@@ -891,63 +907,7 @@ header #back .space + #stars {
         z-index: 1;
       }
 
-
-/* ============ SNOW ============ */
-
-.snowflakes-container {
-  z-index: 0;
-  opacity: 0.02;
-
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  overflow: hidden;
-}
-
-.snowflake {
-
-  position: absolute;
-  top: -50px;
-  width: 10px;
-  height: 10px;
-  filter: blur(2px);
-  background: white;
-  border-radius: 50%;
-  animation: snowflakeFall 5s linear infinite;
-}
-
-
-/* ============ STYLES ANIMATIONS ============ */
-
-/* Faire défiler un texte en rainbow */
-.animation-rainbow {
-  animation: rainbow 5s infinite linear;
-}
-
-/* Faire défiler un texte en levitant */
-.animation-float {
-  animation: float 1.5s ease-in-out infinite;
-}
-
-/* Faire apparaître progressivement */
-.animation-advent {
-  animation: advent 0.5s forwards;
-  opacity: 0;
-}
-
 /* ============ ANIMATIONS ============ */
-
-@keyframes snowflakeFall {
-  from {
-    transform: translateY(-50px) rotate(0deg);
-  }
-
-  to {
-    transform: translateY(100vh) rotate(360deg);
-  }
-}
 
 @keyframes float {
   0% {
@@ -975,6 +935,28 @@ Elle utilise la propriété "transform" pour effectuer la rotation.
   }
 }
 
+@keyframes animrocket {
+  0% {
+    visibility: visible;
+    transform: rotate(340deg) translate(128px, 800px);
+  }
+  100% {
+    visibility: hidden;
+    transform: rotate(340deg) translate(128px, 5px);
+  }
+}
+
+@keyframes animcore {
+  0% {
+    visibility: visible;
+    transform: rotate(320deg) translate(-392px, -456px);
+  }
+  100% {
+    visibility: hidden;
+    transform: rotate(90deg) translate(-392px, -456px);
+  }
+}
+
 /* Text scrolling:
 Cette animation fait défiler un texte horizontalement.
 Elle utilise la propriété "transform" pour déplacer le texte sur l'axe X.
@@ -988,24 +970,14 @@ transform: translateX(-100%);
 }
 }
 
-/* Rainbow:
-Cette animation fait passer la couleur d'un élément à travers les couleurs de l'arc-en-ciel.
-Elle utilise la propriété "color" pour changer la couleur de l'élément.
-Elle définit différents points clés pour chaque couleur de l'arc-en-ciel.
-*/
-@keyframes rainbow {
-  0% { color: #f00; } /* Red */
-  10% { color: #ff7f00; } /* Orange */
-  20% { color: #ffff00; } /* Yellow */
-  30% { color: #00ff00; } /* Green */
-  40% { color: #0000ff; } /* Blue */
-  50% { color: #4b0082; } /* Indigo */
-  60% { color: #8b00ff; } /* Violet */
-  100% { color: #f00; } /* Red */
-}
-
-@keyframes advent {
+@keyframes bg-spin {
   to {
-    opacity: 1;
+  --border-angle: 1turn;
   }
-}
+  }
+
+  @property --border-angle {
+  syntax: "<angle>";
+  inherits: true;
+  initial-value: 0turn;
+  }
