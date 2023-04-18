@@ -8,7 +8,7 @@
   --main-padding: 30px;
 
   /*---- BARRE DU HAUT ----*/
-  --header-height: 800px;
+  --header-height: 600px;
   --fixedheader-height: 100px;
 
   /*---- COLOR ----*/
@@ -181,7 +181,7 @@ header #back .space + #stars {
 /* If the screen size is 1000px wide or less */
 @media screen and (min-width: 1000px) {
   header h1 {
-    padding-top: 192px;
+    padding-top: 64px;
     padding-right: 128px;
 
     font-size: 84px;
@@ -230,7 +230,7 @@ header #back .space + #stars {
 /* If the screen size is 1000px wide or less */
 @media screen and (max-width: 1000px) {
   header h1 {
-    padding-top: 192px;
+    padding-top: 64px;
     padding-right: 128px;
 
     font-size: 64px;
@@ -310,7 +310,7 @@ header #back .space + #stars {
 @media screen and (max-width: 600px) {
 
   header h1 {
-    padding-top: 256px;
+    padding-top: 128px;
     padding-right: 100px;
 
     font-size: 32px;
