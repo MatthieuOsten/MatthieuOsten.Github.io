@@ -66,9 +66,9 @@ body {
 #rocket {
   position: absolute;
 
-  width: 50px;
+  width: 30px;
   filter: brightness(0.5) blur(1px);
-  transform: rotate(340deg) translate(555px, 800px);
+  transform: rotate(340deg) translate(128px, -200px);
 
   animation: animrocket 20s linear infinite;
 }
@@ -78,10 +78,36 @@ body {
   position: absolute;
 
   width: 50px;
-  filter: brightness(0.5) blur(0.5px);
+  filter: brightness(0.5) blur(0.3px);
   transform: rotate(286deg) translate(-458px, -361px);
 
   animation: animcore 20s linear infinite;
+}
+
+#blackhole {
+
+  position: absolute;
+  width: 20px;
+
+  opacity: 0.9;
+  filter: brightness(0.8) blur(1px);
+  transform: translate(-180px, 390px) rotate(360deg);
+  rotate: 290deg;
+
+  animation: animblackhole 418s linear infinite;
+}
+
+#whitehole {
+
+  position: absolute;
+  width: 30px;
+
+  opacity: 0.8;
+  filter: brightness(0.8) blur(0.5px);
+  transform: translate(-30px, 600px) rotate(360deg);
+  rotate: 290deg;
+
+  animation: animwhitehole 418s linear infinite;
 }
 
 /* ============ HEADER ============ */
@@ -151,7 +177,7 @@ header #back .space {
   filter: blur(0.2px);
 
   /* Had to base64 SVG background for FF compatibility */
-  background-image: url(../Image/stars.svg);
+  background-image: url(../Image/Space/stars.svg);
 }
 
 header #back .space + #stars {
@@ -171,7 +197,7 @@ header #back .space + #stars {
   filter: blur(1px);
 
   /* Had to base64 SVG background for FF compatibility */
-  background-image: url(../Image/stars.svg);
+  background-image: url(../Image/Space/stars.svg);
 }
 
 /* If the screen size is 1000px wide or less */
@@ -942,7 +968,7 @@ Elle utilise la propriété "transform" pour effectuer la rotation.
   }
   100% {
     visibility: hidden;
-    transform: rotate(340deg) translate(128px, 5px);
+    transform: rotate(340deg) translate(128px, -200px);
   }
 }
 
@@ -954,6 +980,24 @@ Elle utilise la propriété "transform" pour effectuer la rotation.
   100% {
     visibility: hidden;
     transform: rotate(90deg) translate(-392px, -456px);
+  }
+}
+
+@keyframes animblackhole {
+  from {
+    rotate: 0deg;
+  }
+  to {
+    rotate: 360deg;
+  }
+}
+
+@keyframes animwhitehole {
+  from {
+    rotate: 360deg;
+  }
+  to {
+    rotate: 0deg;
   }
 }
 
