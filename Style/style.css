@@ -480,37 +480,38 @@ header #back .space + #stars {
 
   position: relative;
 
-  overflow: hidden;
-
   border: solid #000000;
 
   transition: all 0.5s ease;
 }
 
-.box img {
+.box .hidden {
   position: absolute;
-  bottom: -5%;
-  left: -5%;
 
-  filter: drop-shadow(-10px 10px 20px black) contrast(110%);;
+  z-index: 1;
+
+  width: 100%;
+  height: 100%;
+
+  overflow: hidden;
 
   pointer-events: none;
-
-  height: 80%;
-  transition: all 0.3s ease;
-
 }
 
 .box .category {
-  bottom: -5px;
+
   position: absolute;
+
+  bottom: -5px;
   right: -5px;
+
   min-width: fit-content;
   width: 132px;
   height: 32px;
+
   color: white;
   background: linear-gradient(135deg, rgba(0, 0, 0, 50%) 50%, rgba(0, 0, 0, 100%) 80%);
-  z-index: 2;
+
   border-top-left-radius: 10px;
   font-family: monospace;
   text-align: center;
@@ -527,11 +528,24 @@ header #back .space + #stars {
   bottom: 0;
   left: 0;
 
-  pointer-events: none;
-
   object-fit: cover;
 
-  filter: blur(1px);
+  pointer-events: none;
+
+  filter: blur(1px) contrast(120%);
+}
+
+.box .visible {
+  position: absolute;
+
+  z-index: 4;
+
+  width: 100%;
+  height: 100%;
+
+  overflow: hidden;
+
+  pointer-events: none;
 }
 
 .box img.title {
@@ -541,46 +555,70 @@ header #back .space + #stars {
   width: 100%;
   height: 100%;
 
-  filter: drop-shadow(0px 5px 20px 10px black);
-
-  overflow: visible;
+  filter: drop-shadow(0px 4px 0px black);
 
   pointer-events: none;
 
   top: 0;
   left: 0;
 
-  object-fit: contain;
-
   transition: top 0.4s ease;
 }
 
-.box:hover {
-  overflow: visible;
+.box img {
+  position: absolute;
 
+  height: 100%;
+  width: 100%;
+
+  filter: drop-shadow(-10px 10px 20px black) contrast(110%);;
+
+  pointer-events: none;
+
+  transition: all 0.3s ease;
+
+}
+
+/* ------ HOVER ------ */
+
+.box:hover {
   transform: translateY(-20px);
 }
 
-.box:hover img {
-  z-index: 2;
+.box:hover .hidden {
+  filter: blur(2px);
+}
 
-  filter: drop-shadow(-10px 10px 5px black) contrast(120%);;
+.box:hover img.background {
 
+  filter: contrast(100%);
+
+  width: 100%;
   height: 100%;
 }
 
-.box:hover .title {
+.box:hover .visible {
+  z-index: 4;
 
-  filter: drop-shadow(0px 5px 20px 10px black);
-
-  height: 200%;
-  top: -30%;
+  overflow: visible;
 }
 
-.box:hover .background {
-  z-index: 1;
+.box:hover img.title {
 
-  filter: blur(2px);
+  filter: drop-shadow(1px 4px 2px black);
+
+  height: 130%;
+  width: 130%;
+
+  left: -15%;
+  top: -15%;
+}
+
+.box:hover img {
+  filter: drop-shadow(-10px 10px 5px black) contrast(120%);
+
+  height: 110%;
+  width: 110%;
 }
 
 /* ============ CARDS ============ */

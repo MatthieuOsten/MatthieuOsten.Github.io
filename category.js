@@ -3,7 +3,8 @@ const categories = [
     name: 'Game',
     projects: [
       { name: 'AssaultOfOrder', url:"https://evil0games.itch.io/assault-of-order" },
-      { name: 'Bordelania', url:"https://evil0games.itch.io/bordelania" }
+      { name: 'Bordelania', url:"https://evil0games.itch.io/bordelania" },
+      { name: 'StayInLight', url:"https://leahoa.itch.io/survival-horror" }
     ]
   },
   {
@@ -16,16 +17,16 @@ const categories = [
 
 const favoriteProjects = [
   {
+    category: 'Game',
+    project: 'StayInLight',
+  },
+  {
     category: 'Landscape',
     project: 'PirateIsland',
   },
   {
     category: 'Game',
     project: 'AssaultOfOrder',
-  },
-  {
-    category: 'Game',
-    project: 'Bordelania',
   }
 ]
 
@@ -48,10 +49,16 @@ function GenerateBox(parent) {
 
     /* -- BOX -- */
 
-    const box = document.createElement("a");
+    var box = document.createElement("a");
     box.className = "box";
     box.setAttribute('href',GetProject(favoriteProjects[i].category,favoriteProjects[i].project).url);
     box.setAttribute('target',"_blank");
+
+    var visibleBox = document.createElement("div");
+    visibleBox.className = "visible";
+
+    var hiddenBox = document.createElement("div");
+    hiddenBox.className = "hidden";
 
     /* -- CATEGORY -- */
 
@@ -62,13 +69,13 @@ function GenerateBox(parent) {
     /* -- IMAGE -- */
 
     var pathBackground = element + '/background.jpg';
-    var image = document.createElement("img");
-    image.className = "background";
+    var imageBack = document.createElement("img");
+    imageBack.className = "background";
     try {
-      image.src = pathBackground;
+      imageBack.src = pathBackground;
     } catch (error) {
       console.log("Background doesn't exist : ", favoriteProjects, i);
-      image.src = "Image/Default.jpg";
+      imageBack.src = "Image/Default.jpg";
     }
 
     var pathTitle = element + '/title.png';
@@ -91,11 +98,13 @@ function GenerateBox(parent) {
 
     /* ------ PARENT ------ */
 
-    box.appendChild(image);
-    box.appendChild(imageBox);
-    box.appendChild(imageTitle);
-    box.appendChild(categorieBar);
     parent.appendChild(box);
+    box.appendChild(hiddenBox);
+    box.appendChild(visibleBox);
+    hiddenBox.appendChild(imageBack);
+    hiddenBox.appendChild(categorieBar);
+    visibleBox.appendChild(imageTitle);
+    visibleBox.appendChild(imageBox);
 
   }
 
