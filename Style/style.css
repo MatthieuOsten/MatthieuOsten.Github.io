@@ -19,7 +19,7 @@
 
   /*---- CARD ----*/
 
-  --glitter: url(../Image/Background/silver-glitter-background.webp);
+  --glitter: url(../images/Background/silver-glitter-background.webp);
   --duration: 6.66s;
 
   /*SIZE*/
@@ -177,7 +177,7 @@ header #back .space {
   filter: blur(0.2px);
 
   /* Had to base64 SVG background for FF compatibility */
-  background-image: url(../Image/Space/stars.svg);
+  background-image: url(../images/Space/stars.svg);
 }
 
 header #back .space + #stars {
@@ -197,7 +197,7 @@ header #back .space + #stars {
   filter: blur(1px);
 
   /* Had to base64 SVG background for FF compatibility */
-  background-image: url(../Image/Space/stars.svg);
+  background-image: url(../images/Space/stars.svg);
 }
 
 /* If the screen size is 1000px wide or less */
